@@ -1,0 +1,12 @@
+component: website
+name: frontend
+app: frontend
+inputs:
+  src:
+    src: ./src
+    hook: npm run build
+    dist: ./dist/spa
+    index: index.html
+    error: index.html
+  bucketName: frontend
+  protocol: https
