@@ -15,7 +15,7 @@ export default {
     };
   },
   methods: {
-    update(rank) {
+    update() {
       while (this.chart.data.datasets[0].data.length > 0)
         this.chart.data.datasets[0].data.pop();
       this.chart.data.datasets[0].data.push(this.pos);
@@ -24,7 +24,6 @@ export default {
     },
   },
   mounted() {
-    let tColor = this.$q.localStorage.getItem("tColor");
     this.chart = new Chart(this.$refs.chart, {
       type: "pie",
       data: {
@@ -32,16 +31,14 @@ export default {
         datasets: [
           {
             label: this.$t("emotion"),
-            data: [],
-            backgroundColor: [
-              "rgb(255, 99, 132)",
-              "rgb(54, 162, 235)",
-            ],
-            hoverOffset: 3,
+            data: [this.pos, this.neg],
+            backgroundColor: ["rgb(54, 162, 235)", "rgb(255, 99, 132)"],
+            hoverOffset: 4,
           },
         ],
       },
     });
+    this.chart.update();
   },
   watch: {
     pos() {
